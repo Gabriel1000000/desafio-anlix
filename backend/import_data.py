@@ -2,7 +2,6 @@ import os
 import json
 import pandas as pd
 from sqlalchemy.orm import Session
-from sqlalchemy.exc import IntegrityError
 from models import PacienteModel, MedicaoModel, SessionLocal
 
 def normalizar_cpf(cpf: str) -> str:
