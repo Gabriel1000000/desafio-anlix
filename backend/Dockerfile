@@ -5,8 +5,8 @@ COPY . .
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Executa a importação antes de iniciar a API
-RUN python import_data.py
-
 EXPOSE 8000
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# Sobe a API e, em paralelo, roda o import_data.py
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port 8000 & python import_data.py"]
+
