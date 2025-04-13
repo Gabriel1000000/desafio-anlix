@@ -25,17 +25,6 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
-
-
-  frontend:
-    build: ./frontend
-    container_name: anlix_frontend
-    depends_on:
-      - backend
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app
-
+      
 volumes:
   db_data:
