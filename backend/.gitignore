@@ -1,0 +1,17 @@
+# Virtual environment
+venv/
+
+# PyCharm / VSCode
+.idea/
+.vscode/
+
+# Arquivos Python compilados
+__pycache__/
+*.py[cod]
+
+# Arquivos de log
+*.log
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
