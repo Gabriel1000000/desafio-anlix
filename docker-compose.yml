@@ -15,7 +15,8 @@ services:
       - db_data:/var/lib/postgresql/data
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
     container_name: anlix_backend
     depends_on:
       - db

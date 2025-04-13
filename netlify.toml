@@ -1,6 +1,6 @@
 [build]
   base = "frontend/vue-anlix"
-  publish = "frontend/vue-anlix/dist"
+  publish = "dist"
   command = "npm install && npm run build"
 
 [dev]
