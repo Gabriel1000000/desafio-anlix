@@ -2,10 +2,19 @@ import os
 import json
 import pandas as pd
 from sqlalchemy.orm import Session
-from models import PacienteModel, MedicaoModel, SessionLocal
+from sqlalchemy.exc import ProgrammingError
+from models import PacienteModel, MedicaoModel, SessionLocal, Base
 
 def normalizar_cpf(cpf: str) -> str:
     return cpf.replace(".", "").replace("-", "")
+
+def verificar_tabelas():
+    """Verifica se as tabelas existem e cria se não existirem"""
+    try:
+        # Criar todas as tabelas no banco, se não existirem
+        Base.metadata.create_all(bind=SessionLocal().get_bind())
+    except ProgrammingError as e:
+        print(f"Erro ao verificar ou criar tabelas: {e}")
 
 def importar_pacientes(session: Session):
     with open("dados/pacientes.json", encoding="utf-8") as f:
@@ -72,9 +81,10 @@ def importar_medicoes(session: Session, pasta: str, tipo: str):
             session.rollback()
     print(f"Medições de {tipo} importadas com sucesso.")
 
-
-
 def importar_tudo():
+    # Verifica e cria tabelas, se necessário
+    verificar_tabelas()
+
     with SessionLocal() as session:
         importar_pacientes(session)
         importar_medicoes(session, "dados/indice_cardiaco", "ind_card")
