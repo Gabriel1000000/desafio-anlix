@@ -77,7 +77,7 @@ class Paciente(BaseModel):
     cor: str = Field(..., example="laranja")
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class Medicao(BaseModel):
     cpf: str = Field(..., example="974.642.524-20")
@@ -86,6 +86,6 @@ class Medicao(BaseModel):
     valor: float = Field(..., example=0.715997)
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
